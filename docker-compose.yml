@@ -8,6 +8,8 @@ services:
     volumes:
       - ./src:/var/www/bbms/src
       - ./test:/var/www/bbms/test
+      - ./views:/var/www/bbms/views
+      - ./public:/var/www/bbms/public
     working_dir: /var/www/bbms
     ports:
       - "9001:9000"
@@ -21,17 +23,16 @@ services:
     container_name: bbms_mysql
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_USER=bbms
       - MYSQL_PASSWORD=bbms
       - MYSQL_DATABASE=bbms
-    volumes:
-      - db-volume:/var/lib/mysql
+    # volumes:
+    #   - db-volume:/var/lib/mysql
     ports:
       - "3308:3306"
 
-volumes:
-  db-volume:
+# volumes:
+#   db-volume:
 
 networks:
   default:
