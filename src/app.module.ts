@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
+import { SnakeCaseNamingStrategy } from './utils/snakeCaseNamingStrategy';
 
 @Module({
   imports: [
@@ -15,8 +17,10 @@ import { ConfigModule } from '@nestjs/config';
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
       entities: [],
-      synchronize: true
-    })
+      synchronize: true,
+      namingStrategy: new SnakeCaseNamingStrategy()
+    }),
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService],

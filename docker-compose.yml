@@ -26,13 +26,14 @@ services:
       - MYSQL_USER=bbms
       - MYSQL_PASSWORD=bbms
       - MYSQL_DATABASE=bbms
-    # volumes:
-    #   - db-volume:/var/lib/mysql
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./db-volume:/var/lib/mysql
     ports:
       - "3308:3306"
 
-# volumes:
-#   db-volume:
+volumes:
+  db-volume:
 
 networks:
   default:
