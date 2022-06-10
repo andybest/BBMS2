@@ -28,7 +28,7 @@ export class User {
     active: boolean;
 
     @Column({type: "tinyint", width: 1})
-    key_holder: boolean;
+    keyHolder: boolean;
 
     @Column({type: "tinyint", width: 1})
     trusted: boolean;
@@ -57,10 +57,10 @@ export class User {
     @Column({type: "varchar", length: 128})
     subscriptionId: string;
 
-    @Column({type: "date", nullable: true})
+    @Column({type: "timestamp", nullable: true})
     subscriptionExpires: Date;
 
-    @Column({type: "date", nullable: true})
+    @Column({type: "timestamp", nullable: true})
     bannedDate: Date;
 
     @Column({type: "varchar", length: 20})
@@ -80,4 +80,7 @@ export class User {
 
     @Column({type: "varchar", length: 128})
     goCardlessSetupId: string;
+
+    @Column({type: "timestamp", nullable: true, default: () => 'CURRENT_TIMESTAMP'})
+    createdAt: Date;
 }

@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { SnakeCaseNamingStrategy } from './utils/snakeCaseNamingStrategy';
+import { AuthModule } from './auth/auth.module';
+import { User } from './users/entities/user.entity';
 
 @Module({
   imports: [
@@ -16,11 +18,12 @@ import { SnakeCaseNamingStrategy } from './utils/snakeCaseNamingStrategy';
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: [],
       synchronize: true,
-      namingStrategy: new SnakeCaseNamingStrategy()
+      namingStrategy: new SnakeCaseNamingStrategy(),
+      autoLoadEntities: true,
     }),
-    UsersModule
+    UsersModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

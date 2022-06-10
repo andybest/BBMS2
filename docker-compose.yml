@@ -21,6 +21,7 @@ services:
   bbms_mysql:
     image: mysql/mysql-server
     container_name: bbms_mysql
+    command: --sql_mode=""
     restart: always
     environment:
       - MYSQL_USER=bbms
